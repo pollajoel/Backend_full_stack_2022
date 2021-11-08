@@ -1,0 +1,22 @@
+{
+  "name": "balade-ardenaise",
+  "version": "1.0.0",
+  "description": "site de reservation de calèche",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pollajoel/baladeArdenaise.git"
+  },
+  "keywords": [
+    "booking"
+  ],
+  "author": "pollajoel2017@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pollajoel/baladeArdenaise/issues"
+  },
+  "homepage": "https://github.com/pollajoel/baladeArdenaise#readme"
+}
