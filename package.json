@@ -1,7 +1,7 @@
 {
   "name": "balade-ardenaise",
   "version": "1.0.0",
-  "description": "site de reservation de calèche",
+  "description": "Api de reservation de promenades",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -18,5 +18,20 @@
   "bugs": {
     "url": "https://github.com/pollajoel/baladeArdenaise/issues"
   },
-  "homepage": "https://github.com/pollajoel/baladeArdenaise#readme"
+  "homepage": "https://github.com/pollajoel/baladeArdenaise#readme",
+  "dependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/node": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
+    "babel": "^6.23.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3-rc.0",
+    "sequelize": "^6.9.0"
+  },
+  "devDependencies": {
+    "sqlite3": "^5.0.2"
+  }
 }
