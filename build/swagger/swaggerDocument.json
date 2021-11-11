@@ -52,6 +52,32 @@
                 }
             }
 
+        },
+
+        "/rises": {
+            "post":{
+                "tags":["rises"],
+                "description": "Create new rises in system",
+                "summary": "Add new rise in system",
+                "parameters": [{
+                    "name": "rise",
+                    "in": "body",
+                    "description": "rise that we want to create"
+                }],
+                "responses": {
+                    "200": {"description":"OK"}
+                }
+            },
+            "get": {
+                "tags": ["rises"],
+                "summary": "Get all rises in system",
+                "responses": {
+                    "200": {"description": "OK"},
+                    "400": {"description": "OK"}
+                }
+            }
         }
+
+
     }
 }
