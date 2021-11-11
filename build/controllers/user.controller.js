@@ -4,14 +4,14 @@ const User = db.users;
 const Op = db.Sequelize.Op;
 
 
-exports.findAll = async(req, res)=>{
+exports.findAll = (req, res)=>{
 
-  try{
-    const data =  await User.findAll({});
-    res.send(data);
-  }catch(err){
-    console.log(err);
-  }
+  User.findAll({}).then(data => {
+    res.send(data).status(200);
+  }).catch(err=>{
+    res.status(500).send({message: err.message || "an error occur"});
+  })
+  
 
 }
 

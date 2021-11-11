@@ -6,13 +6,12 @@ const Op = db.Sequelize.Op;
 
 exports.findAll = async(req, res)=>{
 
-  try{
-    const data =  await rise.findAll({});
-    res.send(data);
-  }catch(err){
-    console.log( err)
-  }
-
+  rise.findAll({}).then(data => {
+    res.send(data).status(200);
+  }).catch(err=>{
+    res.status(500).send({message: err.message || "an error occur"});
+  });
+  
 }
 
 
