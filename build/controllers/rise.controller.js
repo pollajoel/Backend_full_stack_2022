@@ -10,10 +10,7 @@ exports.findAll = async(req, res)=>{
     const data =  await rise.findAll({});
     res.send(data);
   }catch(err){
-    res.send({
-      message:
-      err.message || "Some error occurred while retrieving tutorials."
-    })
+    console.log( err)
   }
 
 }
