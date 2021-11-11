@@ -35,7 +35,8 @@
     "mysql": "^2.18.1",
     "mysql2": "^2.3.3-rc.0",
     "sequelize": "^6.9.0",
-    "swagger-ui-express": "^4.1.6"
+    "swagger-ui-express": "^4.1.6",
+    "sqlite3": "^5.0.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.13.0",
