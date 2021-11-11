@@ -4,7 +4,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const apiRouter = require("../routes");
 const PORT = process.env.PORT || 4000;
-
+const swaggerUi = require("swagger-ui-express");
+const  swaggerDocument = require("../swagger/swaggerDocument.json");
 const db = require("../models");
       db.sequelize.sync();
 // In development, you may need to drop existing tables and re-sync database.
@@ -19,6 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(bodyParser.json());
 app.use('/api/v1', apiRouter);
+app.use('/api-docs',swaggerUi.serve,swaggerUi.setup(swaggerDocument));
 module.exports.start = ()=>{
   app.listen(PORT,(err)=>{
       console.warn(`Serveur Listen on port ${PORT}`)
