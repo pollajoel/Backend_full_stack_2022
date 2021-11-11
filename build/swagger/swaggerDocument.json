@@ -9,7 +9,7 @@
             "url": "https://opensource.org/licenses/MIT"
         }
     },
-    "host": "baladeardenaise.herokuapp.com",
+    "host": "ardenaiserise.herokuapp.com",
     "basePath": "/api/v1",
     "tags": [
         {
