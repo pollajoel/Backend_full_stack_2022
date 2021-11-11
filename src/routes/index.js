@@ -4,5 +4,5 @@ const users = require("./users.routes");
 const rise = require("./rise.routes");
 
 router.use( users );
-router.use( rise );
+//router.use( rise );
 module.exports = router
