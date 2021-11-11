@@ -13,33 +13,3 @@ exports.findAll = async(req, res)=>{
   });
   
 }
-
-
-
-exports.Create = async(req, res) => {
-
-}
-
-
-exports.delete = async(req, res) =>{
-}
-
-
-
-exports.findOne = (req, res) => {
-  
-};
-
-
-exports.update = (req, res) => {
-  
-};
-
-
-exports.delete = (req, res) => {
-  
-};
-
-exports.deleteAll = (req, res) => {
-  
-};
