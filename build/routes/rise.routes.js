@@ -4,5 +4,5 @@ const rises  = require("../controllers/rise.controller");
 
 
 router.get("/rises",rises.findAll)
-router.post("/rise",rises.Create)
+//router.post("/rise",rises.Create)
 module.exports = router

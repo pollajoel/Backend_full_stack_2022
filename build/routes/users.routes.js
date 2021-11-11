@@ -4,5 +4,5 @@ const users  = require("../controllers/user.controller");
 
 
 router.get("/users",users.findAll)
-router.post("/users",users.Create)
+//router.post("/users",users.Create)
 module.exports = router
