@@ -2,6 +2,9 @@
 const db = require("../models");
 const bcrypt = require('bcrypt');
 const User = db.users;
+const jwt = require("jsonwebtoken");
+const jwTkeys = require("../config/configdata")
+const UservalidationSchema = require("../middleware/validator/user.validator")
 
 
 
@@ -15,8 +18,10 @@ exports.findAll = (req, res)=>{
 
   
 exports.register = (req, res) => {
-    if(!req.body){
-      res.send({message:"Content can not be empty"}).status(400);
+
+  const validation = UservalidationSchema.validate(req.body)
+    if(validation.error){
+      return res.status(400).send({error:validation.error})
     }
     const hashedPassword = bcrypt.hashSync(req.body.password, 10);
     const body = req.body;
@@ -94,3 +99,36 @@ exports.delete =(req, res) => {
         });
       });
   };
+
+
+
+  exports.authentification = ( req, res ) => {
+
+    const body = req.body;
+    const hashedPassword = bcrypt.hashSync(req.body.password, 10);
+    const data = {...body, password:hashedPassword};
+    User.findOne({
+      where :{email: data.email}
+    }).then(user => {
+
+    
+      const userdata = JSON.stringify( user)
+      if( !userdata )
+      { return res.status(404).send({error: 'No user Found..',
+      login: false});}
+      else{
+        const decodJson = JSON.parse( userdata)
+        const userToken = jwt.sign({
+          id: decodJson.id,
+          is_admin: decodJson.is_admin
+         },jwTkeys.JwtConfig.keys,{expiresIn:86400});
+         return res.send({jwtWebToken:userToken});
+      }
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred during User Logging..."
+      });
+    });
+}

@@ -1,5 +1,5 @@
-const config = require("../configs")
 const jwt = require("jsonwebtoken")
+const jwTkeys = require("../config/configdata")
 
 exports.authenticateJWT = (req, res, next) => {
 
@@ -13,11 +13,11 @@ exports.authenticateJWT = (req, res, next) => {
 			})
 		}
 
-        jwt.verify(token, config.jwt.secret, (err, user) => {
+        jwt.verify(token, jwTkeys.JwtConfig.keys, (err, user) => {
             if (err) {
                 return res.status(403).send({
                    auth:false,
-                   message: "no authorized" 
+                   message: "not authorized" 
                 });
             }
             req.user = user;

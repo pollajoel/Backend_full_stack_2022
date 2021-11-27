@@ -29,25 +29,57 @@
 
     "paths": {
         "/user": {
-            "post":{
-                "tags":["User"],
-                "description": "Create new user in system",
-                "summary": "Add new user in system",
-                "parameters": [{
-                    "name": "user",
-                    "in": "body",
-                    "description": "User that we want to create"
-                }],
-                "responses": {
-                    "200": {"description":"OK"}
+          "post":{
+            "tags":["User"],
+            "description": "created",
+            "summary": "create new user",
+            "parameters": [
+              
+              
+              {
+                "name": "user data for creating",
+                "in": "body",
+                "description": "create User",
+                "schema":{
+                  "type":"object",
+                  "required":["email", "password", "firstname","is_admin", "name"],
+                  "properties":{
+                    "password":{ "type": "string"},
+                    "email":{ "type": "string"},
+                    "firstname":{ "type": "string"},
+                    "name":{ "type": "string"},
+                    "phone":{ "type": "string"},
+                    "postal_code":{ "type": "string"},
+                    "city":{ "type": "string"},
+                    "country":{ "type": "string"}
+                  }
                 }
-            } ,
+
+                
+              }
+          ],
+            "responses": {
+                "201": {"description":"OK"},
+                "content": {
+                  "application/json": {
+                  }
+                }
+            }
+        } ,
 
             "get": {
                 "tags": ["User"],
                 "summary": "Get all users in system",
                 "responses": {
-                    "200": {"description": "OK"},
+                    "200": {
+                      "description": "OK",
+                      "content":{
+                        "application/json":{
+                          
+                        }
+                      }
+                      
+                    },
                     "400": {"description": "OK"}
                 }
             }
@@ -120,6 +152,7 @@
                     }
                     },
 
+                  
 
 
         "/rises": {
@@ -144,7 +177,38 @@
                     "400": {"description": "OK"}
                 }
             }
-        }
+        },
+
+        "/user/authentification": {
+          "post":{
+              "tags":["User"],
+              "description": "created",
+              "summary": "Get JwtToken",
+              "parameters": [{
+                  "name": "parameter for login",
+                  "in": "body",
+                  "description": "pass user email and user password",
+                  "schema":{
+                    "type":"object",
+                    "required":["email", "password"],
+                    "properties":{
+                      "password":{ "type": "string"},
+                      "email":{ "type": "string"}
+                    }
+                  }
+                }
+            ],
+              "responses": {
+                  "201": {"description":"OK"},
+                  "content": {
+                    "application/json": {
+                    }
+                  }
+              }
+          }
+      }
+
+
 
 
     }
