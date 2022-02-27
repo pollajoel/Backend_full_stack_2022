@@ -1,9 +1,14 @@
 const db = require("../models");
-const UserRole = db.userroles;
-const UserrolevalidationSchema = require("../middleware/validator/userrole.validator")
+const TaskvalidationSchema = require("../middleware/validator/task.validator");
+const task = db.task;
+const project = db.projects;
+const statuts = db.statuts;
+const user = db.users;
 
 exports.findAll = (req, res) => {
-  UserRole.findAll({}).then(data => {
+  task.findAll({
+    include:[{model:project},{model:statuts}, {model:user}]
+  }).then(data => {
     res.send(data).status(200);
   }).catch(err=>{
     res.status(500).send({message: err.message || "an error occur"});
@@ -11,14 +16,15 @@ exports.findAll = (req, res) => {
   }
 
   exports.create = (req, res) => {
-      const validation = UserrolevalidationSchema.validate(req.body)
+    
+      const validation = TaskvalidationSchema.validate(req.body)
         if(validation.error){
           return res.status(400).send({error:validation.error})
         }
-        
+
       const body = req.body;
-      const UserRoledata = {...body};
-      UserRole.create(UserRoledata).then(data=>{
+      const taskdata = {...body};
+      task.create(taskdata).then(data=>{
         res.send( data)
       }).catch(err=>{
         res.status(500).send({message:err.message || "an error occur"});
@@ -29,23 +35,23 @@ exports.findAll = (req, res) => {
     exports.update = (req, res) => {
       const id = req.params.id;
       const body = { ...req.body}
-      UserRole.update( body, {
+      task.update( body, {
         where: { id: id }
       })
         .then(num => {
           if (num == 1) {
             res.send({
-              message: "Role was updated successfully."
+              message: "task was updated successfully."
             });
           } else {
             res.send({
-              message: `Cannot update Role with id=${id}. Maybe User was not found or req.body is empty!`
+              message: `Cannot update task with id=${id}. Maybe User was not found or req.body is empty!`
             });
           }
         })
         .catch(err => {
           res.status(500).send({
-            message: "Error updating Role with id=" + id,
+            message: "Error updating task with id=" + id,
             error:err.message
           });
         });
@@ -53,33 +59,34 @@ exports.findAll = (req, res) => {
   
     exports.findById = (req, res) => {
       const id = req.params.id;
-      UserRole.findAll(
+      task.findAll(
         {
+          include:[{model:project}, {model:statuts},{model:user}],
           where: {id: id},
         }
-      ).then( userrole =>{
-        if(!userrole){
+      ).then( taskdata =>{
+        if(!taskdata){
           return res.status(404).send({
-            message: `role not found with id ${req.params.id}`,
+            message: `task not found with id ${req.params.id}`,
           });
         }
-        res.send( userrole).status(200)
+        res.send( taskdata).status(200)
     }).catch( err =>{
-      res.status(500).send({message: "Error retrieving role with id=" + id})
+      res.status(500).send({message: "Error retrieving taskdata with id=" + id})
     });
   
     }
 
     exports.delete =(req, res) => {
       const id = req.params.id;
-      UserRole.destroy({
+      task.destroy({
           where: {id:id}
         })
           .then(count => {
             if( !count )
             { return res.status(404).send({error: 'No user'});}
             else
-              res.send({ message: `${count} role were deleted successfully!` });
+              res.send({ message: `${count} task were deleted successfully!` });
           })
           .catch(err => {
             res.status(500).send({

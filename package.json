@@ -1,7 +1,7 @@
 {
   "name": "balade-ardenaise",
   "version": "1.0.0",
-  "description": "Api de reservation de promenades",
+  "description": "Application de gestion de projects",
   "main": "app.js",
   "scripts": {
     "dev": "nodemon --exec babel-node ./src/app.js",
@@ -37,6 +37,7 @@
     "jsonwebtoken": "^8.5.1",
     "mysql": "^2.18.1",
     "mysql2": "^2.3.3-rc.0",
+    "pg": "^8.7.1",
     "sequelize": "^6.9.0",
     "sqlite3": "^5.0.2",
     "swagger-ui-express": "^4.1.6"

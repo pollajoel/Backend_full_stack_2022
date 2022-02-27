@@ -8,7 +8,8 @@ module.exports = (sequelize, Sequelize) => {
       phone: { type: Sequelize.STRING, allowNull: true, default:""},
       postal_code: { type: Sequelize.STRING, allowNull: true, default:"" },
       city: { type: Sequelize.STRING, allowNull: true, default:"" },
-      country: { type: Sequelize.STRING, allowNull: true, default:"" }
+      country: { type: Sequelize.STRING, allowNull: true, default:"" },
+      profil_image: { type: Sequelize.STRING, allowNull: true},
     });
     return users;
   };

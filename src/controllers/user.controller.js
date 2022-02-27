@@ -2,6 +2,7 @@
 const db = require("../models");
 const bcrypt = require('bcrypt');
 const User = db.users;
+const role = db.userroles;
 const jwt = require("jsonwebtoken");
 const jwTkeys = require("../config/configdata")
 const UservalidationSchema = require("../middleware/validator/user.validator")
@@ -9,7 +10,7 @@ const UservalidationSchema = require("../middleware/validator/user.validator")
 
 
 exports.findAll = (req, res)=>{
-  User.findAll({}).then(data => {
+  User.findAll({include:[{model:role}]}).then(data => {
     res.send(data).status(200);
   }).catch(err=>{
     res.status(500).send({message: err.message || "an error occur"});
@@ -18,11 +19,12 @@ exports.findAll = (req, res)=>{
 
   
 exports.register = (req, res) => {
-
+  
   const validation = UservalidationSchema.validate(req.body)
-    if(validation.error){
-      return res.status(400).send({error:validation.error})
-    }
+  if(validation.error){
+    return res.status(400).send({error:validation.error})
+  }
+
     const hashedPassword = bcrypt.hashSync(req.body.password, 10);
     const body = req.body;
     const UserData = {...body, password:hashedPassword};
@@ -64,14 +66,14 @@ exports.update = (req, res) => {
 
 exports.findById = (req, res) => {
     const id = req.params.id;
-    User.findAll(
-      {
-        where: {id: id},
-      }
-    ).then( user =>{
+    User.findAll({
+      include:[{model:role}],
+      where: {id: id}
+    }).then( user =>{
       if(!user){
         return res.status(404).send({
-          message: `user not found with id ${req.params.id}`,
+          message: `user not found`,
+          connect: false
         });
       }
       res.send( user).status(200)
@@ -103,7 +105,6 @@ exports.delete =(req, res) => {
 
 
   exports.authentification = ( req, res ) => {
-
     const body = req.body;
     const hashedPassword = bcrypt.hashSync(req.body.password, 10);
     const data = {...body, password:hashedPassword};
