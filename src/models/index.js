@@ -3,15 +3,20 @@ const Sequelize = require("sequelize");
 
 /* connexion with mysql database */
 const sequelize = new Sequelize({
-  operatorsAliases: 0,
-  database: 'ardenaise',
-    username: 'postgres',
-    password: 'admin',
-    host: 'localhost',
-    port: 5432,
-    dialect: 'postgres'
+  
+    operatorsAliases: 0,
+    database:  process.env.DB_SCHEMA || 'ardenaise',
+    username:  process.env.DB_USER || 'postgres',
+    password:  process.env.DB_PASSWORD || 'admin',
+        host:  process.env.DB_HOST|| 'localhost',
+        port:  process.env.DB_PORT || 5432,
+    dialect: 'postgres',
+    dialectOptions: 
+    {
+      ssl: process.env.DB_SSL == "true"
+    }
 
-});
+  });
 
 
 /* connexion with sqlite database 
