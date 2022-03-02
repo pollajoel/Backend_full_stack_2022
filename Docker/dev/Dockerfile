@@ -1,13 +1,10 @@
-FROM node:10.16.0 AS development
+FROM node:16-alpine AS development
 ENV NODE_ENV development
 # Add a work directory
 WORKDIR /app
 # Cache and Install dependencies
 COPY package.json .
 COPY package-lock.json .
-RUN rm -rf node_modules/bcrypt
-RUN npm cache clear --force
-RUN npm rebuild bcrypt --update-binary
 RUN npm install
 # Copy app files
 COPY . .

@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
-const APP_SECRET = 'GraphQL-is-aw3some';
+const jwTkeys = require("../config/configdata")
+const APP_SECRET = jwTkeys.JwtConfig.keys;
 
 function getTokenPayload(token) {
   return jwt.verify(token, APP_SECRET);
@@ -13,12 +14,13 @@ function getUserId(req, authToken) {
       if (!token) {
         throw new Error('No token found');
       }
-      const { userId } = getTokenPayload(token);
-      return userId;
+      const { id} = getTokenPayload(token);
+      return id;
+      
     }
   } else if (authToken) {
-    const { userId } = getTokenPayload(authToken);
-    return userId;
+    const { id } = getTokenPayload(authToken);
+    return id;
   }
 
   throw new Error('Not authenticated');

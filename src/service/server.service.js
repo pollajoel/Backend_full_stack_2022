@@ -36,9 +36,9 @@ graphQlServer.start().then(res => {
 // sequelize configuration
 db.sequelize.sync();
 // In development, you may need to drop existing tables and re-sync database.
-db.sequelize.sync({ force: true }).then(() => {
-  console.log("Drop and re-sync db.");
-});
+//db.sequelize.sync({ force: true }).then(() => {
+  //console.log("Drop and re-sync db.");
+//});
 
 
 app.use("/api-docs",basicAuth({

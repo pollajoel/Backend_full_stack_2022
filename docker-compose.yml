@@ -1,9 +1,13 @@
-version: "3.7"
+version: "3.8"
+
 services:
-  postgres:
-    image: postgres
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-    ports: 
-      - '5433:5433'
+  app:
+    container_name: app-dev
+    image: app-dev
+    build:
+      context: .
+      target: development
+    volumes:
+      - /usr/src/app/node_modules # anonymous volume for node_modules only
+    ports:
+      - 4000:4000
