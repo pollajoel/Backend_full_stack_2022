@@ -1,27 +1,77 @@
-const db = require("../../models");
-const Statuts = db.statuts;
+const { AuthenticationError } = require('apollo-server-express');
 
 module.exports = {
     Query: {
-        statuts: async(parent, args, context, info) => {
+        tasks: async(parent, args, context, info) => {
 
             const {userId} = context;
-            const statut = await Statuts.findAll({});
-            return statut;
+            const tasks = context.models.task;
+            if (!userId) {
+                throw new AuthenticationError('You must login to add Statuts');
+            }
+            return  await tasks.findAll({});
+            
+        },
+        task: async(parent, args, context) => {
+            const {userId} = context;
+            const tasks = context.models.task;
+            if (!userId) {
+                throw new AuthenticationError('You must login to add Statuts');
+            }
+            return  await tasks.findOne({where: {id:args.id}});
+        }
+    },
+
+    Mutation:{
+        createtask: async(parent, args, context) => {
+            const task = context.models.task;
+
+            const {userId} = context;
+            if (!userId) {
+                throw new AuthenticationError('You must login to add Statuts');
+            }
+            try{
+                return  await task.create(args.input);
+            }catch(e){
+                throw new Error(e)
+            }
+        },
+
+        updatetask: async(parent, args, context) => {
+
+            const {userId} = context;
+            if (!userId) {
+                throw new AuthenticationError('You must login to add Statuts');
+            }
+            const tasksModel = context.models.task;
+            try{
+                await tasksModel.update( args.input,{where: { id: args.id }});
+                return await tasksModel.findOne({where: { id: args.id}})
+            }catch(e){
+                throw new Error(e)
+            }
 
         },
-        statut: async(parent, args) => {
+        
+        deletetask: async(parent, args, context) =>{
 
-            const statut = await Statuts.findAll({
-                where: {id:args.id}
-            });
-            return statut;
+            const {userId} = context;
+            const Tasks = context.models.task;
+            if (!userId) {
+                throw new AuthenticationError('You must login to add Statuts');
+            }
+            try{
+                return await Tasks.destroy({where: {id: args.id}});
+            }catch(e){
+                throw new Error(e)
+            }
 
         }
-       
-    //mutations // typer dans schema
-        //createProduct
-        // updateProduct
-        // etc...
+
     }
+
+
+
+
+
 }

@@ -7,7 +7,7 @@ exports.validate = function (data){
       start_date: Joi.string().required(),
       end_date: Joi.string().required(),
       statutId: Joi.number().integer().required(),
-	  userId: Joi.number().integer().required()
+	    userId: Joi.number().integer().required()
     });
     return ProjectSchemaValidation.validate(data);
 }

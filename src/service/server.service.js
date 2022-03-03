@@ -12,14 +12,20 @@ const { ApolloServer, gql } = require('apollo-server-express');
 const resolvers = require("../appolo/resolvers");
 const schema = require('../appolo/schema');
 const { getUserId } = require("../middleware/auth.security");
+const models =  require("../models")
 
 const graphQlServer = new ApolloServer({
   introspection: true,
-  playground: true,
+  playground: {
+    settings: {
+      'schema.polling.enable': false,
+    },
+  },
   typeDefs : schema,
   resolvers,
   context: ({req}) => {
     return {...req,
+      models,
       userId:
       req && req.headers.authorization
         ? getUserId(req)

@@ -1,28 +1,34 @@
-const db = require("../../models");
-const Statuts = db.statuts;
+const { AuthenticationError } = require('apollo-server-express');
 
 module.exports = {
     Query: {
         statuts: async(parent, args, context, info) => {
 
             const {userId} = context;
+            const Statuts = context.models.statuts;
             if (!userId) {
-                throw new Error('You are not authenticated!')
+                throw new AuthenticationError('You must login to add Statuts');
               }
             return await Statuts.findAll({});
         },
         statut: async(parent, args, context) => {
             const {userId} = context;
+            const Statuts = context.models.statuts;
             if (!userId) {
-                throw new Error('You are not authenticated!')
-              }
+                throw new AuthenticationError('You must login to add Statuts');
+            }
 
             return  await Statuts.findAll({where: {id:args.id}});
         }
     },
     Mutation:{
-        createStatut: async(parent, args) => {
-            
+        createStatut: async(parent, args, context) => {
+            const Statuts = context.models.statuts;
+            const {userId} = context;
+            if (!userId) {
+                throw new AuthenticationError('You must login to add Statuts');
+            }
+
             try{
                 return await Statuts.create({
                     name:args.name,
@@ -33,20 +39,36 @@ module.exports = {
             }
         },
 
-        updateStatut: async(parent, args) => {
-           
+        updateStatut: async(parent, args, context) => {
+
+            const {userId} = context;
+            if (!userId) {
+                throw new AuthenticationError('You must login to add Statuts');
+            }
+            const Statuts = context.models.statuts;
             try{
-                const  userNew = new Statuts( args.input );
-                return await Statuts.update(userNew,{where: { id: args.id }});
+                await Statuts.update( args.input,{where: { id: args.id }});
+                return await Statuts.findOne({where: { id: args.id}})
+            }catch(e){
+                throw new Error(e)
+            }
+
+        },
+        
+        deleteStatut: async(parent, args, context) =>{
+
+            const {userId} = context;
+            const Statuts = context.models.statuts;
+            if (!userId) {
+                throw new AuthenticationError('You must login to add Statuts');
+            }
+            try{
+                return await Statuts.destroy({where: {id: args.id}});
             }catch(e){
                 throw new Error(e)
             }
 
         }
-
-
-
-
 
     }
 }

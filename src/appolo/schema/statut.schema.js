@@ -18,7 +18,7 @@ module.exports = gql`
 
     extend type Mutation{
         createStatut(name: String!, description: String!):Statut
-        updateStatut( id: ID!, input: Statutinput):Statut
-        deleteStatut( id: ID!):Statut
+        updateStatut(id:ID!, input: Statutinput):Statut
+        deleteStatut(id:ID!):Int
     }
 `
