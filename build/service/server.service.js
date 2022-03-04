@@ -37,14 +37,21 @@ var schema = require('../appolo/schema');
 var _require2 = require("../middleware/auth.security"),
     getUserId = _require2.getUserId;
 
+var models = require("../models");
+
 var graphQlServer = new ApolloServer({
   introspection: true,
-  playground: true,
+  playground: {
+    settings: {
+      'schema.polling.enable': false
+    }
+  },
   typeDefs: schema,
   resolvers: resolvers,
   context: function context(_ref) {
     var req = _ref.req;
     return _objectSpread(_objectSpread({}, req), {}, {
+      models: models,
       userId: req && req.headers.authorization ? getUserId(req) : null
     });
   }
@@ -57,12 +64,10 @@ graphQlServer.start().then(function (res) {
 }); // sequelize configuration
 
 db.sequelize.sync(); // In development, you may need to drop existing tables and re-sync database.
+//db.sequelize.sync({ force: true }).then(() => {
+//console.log("Drop and re-sync db.");
+//});
 
-db.sequelize.sync({
-  force: true
-}).then(function () {
-  console.log("Drop and re-sync db.");
-});
 app.use("/api-docs", basicAuth({
   users: {
     'AttelageUser': '23c33a52-22b8-11ec-9621-0242ac130002'

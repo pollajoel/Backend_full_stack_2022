@@ -14,7 +14,9 @@ module.exports = {
             if (!userId) {
                 throw new AuthenticationError('You must login to add Statuts');
               }
-            return await User.findAll({});
+            return await User.findAll(
+                {include:[{model:context.models.userroles}]}
+            );
         },
 
         user: async(parent, args, context) => {
@@ -23,7 +25,10 @@ module.exports = {
             if (!userId) {
                 throw new AuthenticationError('You must login to add Statuts');
             }
-                return  await User.findOne({where: {id:args.id}});
+                return  await User.findOne({
+                    where: {id:args.id},
+                    include:[{model: context.models.userroles}]
+                });
         }
     },
     Mutation:{

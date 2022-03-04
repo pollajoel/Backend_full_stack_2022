@@ -9,6 +9,8 @@ module.exports = gql`
         end_date : String!
         statutId: Int
         userId : Int
+        statut: Statut
+        user: User
     }
 
     input projectdataInput {

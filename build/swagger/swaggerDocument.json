@@ -1,0 +1,266 @@
+{
+  "swagger": "2.0",
+  "info": {
+      "version": "1.0.0",
+      "title": "Attelage ardenaise",
+      "description": "Horse-drawn carriage reservation application",
+      "license": {
+          "name": "MIT",
+          "url": "https://opensource.org/licenses/MIT"
+      }
+  },
+  "host": "localhost:4000/",
+  "basePath": "/api/v1",
+  "tags": [
+      {
+          "name": "User",
+          "description": "API for users in the system"
+      }
+  ],
+  "schemes": [
+      "http"
+  ],
+  "consumes": [
+      "application/json"
+  ],
+  "produces": [
+      "application/json"
+  ],
+
+  "paths": {
+      "/user": {
+        "post":{
+          "tags":["User"],
+          "description": "created",
+          "summary": "create new user",
+          "parameters": [
+            
+            
+            {
+              "name": "user data for creating",
+              "in": "body",
+              "description": "create User",
+              "schema":{
+                "type":"object",
+                "required":["email", "password", "firstname","is_admin", "name"],
+                "properties":{
+                  "password":{ "type": "string"},
+                  "email":{ "type": "string"},
+                  "firstname":{ "type": "string"},
+                  "name":{ "type": "string"},
+                  "phone":{ "type": "string"},
+                  "postal_code":{ "type": "string"},
+                  "city":{ "type": "string"},
+                  "country":{ "type": "string"}
+                }
+              }
+
+              
+            }
+        ],
+          "responses": {
+              "201": {"description":"OK"},
+              "content": {
+                "application/json": {
+                }
+              }
+          }
+      } ,
+
+          "get": {
+              "tags": ["User"],
+              "summary": "Get all users in system",
+              "responses": {
+                  "200": {
+                    "description": "OK",
+                    "content":{
+                      "application/json":{
+                        
+                      }
+                    }
+                    
+                  },
+                  "400": {"description": "OK"}
+              }
+          }
+
+      },
+
+      "/user/{id}": {
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "description": "ID of user that we want to find",
+              "type": "string"
+            }
+          ],
+          "get": {
+            "tags": [
+              "User"
+            ],
+            "summary": "Get user with given ID",
+            "responses": {
+              "200": {
+                "description": "user is found"
+              }
+            }
+          }
+          },
+          "/user/{id}": {
+              "parameters": [
+                {
+                  "name": "id",
+                  "in": "path",
+                  "required": true,
+                  "description": "ID of user that we want to find",
+                  "type": "string"
+                }
+              ],
+              "put": {
+                "tags": [
+                  "User"
+                ],
+                "summary": "update user with given ID",
+                "responses": {
+                  "200": {
+                    "description": "user is found"
+                  }
+                }
+              }
+              },
+
+
+              "/user/{id}": {
+                  "parameters": [
+                    {
+                      "name": "id",
+                      "in": "path",
+                      "required": true,
+                      "description": "ID of user that we want to find",
+                      "type": "string"
+                    }
+                  ],
+                  "delete": {
+                    "tags": [
+                      "User"
+                    ],
+                    "summary": "Delete user with given ID",
+                    "responses": {
+                      "200": {
+                        "description": "user is found"
+                      }
+                    }
+                  }
+                  },
+
+                
+"/rises/{id}": {
+              "parameters": [
+                {
+                  "name": "id",
+                  "in": "path",
+                  "required": true,
+                  "description": "ID of user that we want to find",
+                  "type": "string"
+                }
+              ],
+              "put": {
+                "tags": [
+                  "rises"
+                ],
+                "summary": "update user with given ID",
+                "responses": {
+                  "200": {
+                    "description": "user is found"
+                  }
+                }
+              }
+              },
+
+
+      "/rises": {
+          "post":{
+              "tags":["rises"],
+              "description": "Create new rises in system",
+              "summary": "Add new rise in system",
+              "parameters": [{
+                  "name": "rise",
+                  "in": "body",
+                  "description": "rise that we want to create"
+              }],
+              "responses": {
+                  "200": {"description":"OK"}
+              }
+          },
+          "get": {
+              "tags": ["rises"],
+              "summary": "Get all rises in system",
+              "responses": {
+                  "200": {"description": "OK"},
+                  "400": {"description": "OK"}
+              }
+          }
+      },
+      
+    
+       
+      "/rises/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of user that we want to find",
+            "type": "string"
+          }
+        ],
+        "delete": {
+          "tags": [
+            "rises"
+          ],
+          "summary": "delete rises with given ID",
+          "responses": {
+            "200": {
+              "description": "user is found"
+            }
+          }
+        }
+        }
+      ,
+
+      "/user/authentification": {
+        "post":{
+            "tags":["User"],
+            "description": "created",
+            "summary": "Get JwtToken",
+            "parameters": [{
+                "name": "parameter for login",
+                "in": "body",
+                "description": "pass user email and user password",
+                "schema":{
+                  "type":"object",
+                  "required":["email", "password"],
+                  "properties":{
+                    "password":{ "type": "string"},
+                    "email":{ "type": "string"}
+                  }
+                }
+              }
+          ],
+            "responses": {
+                "201": {"description":"OK"},
+                "content": {
+                  "application/json": {
+                  }
+                }
+            }
+        }
+    }
+
+
+
+
+  }
+}

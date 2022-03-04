@@ -9,15 +9,15 @@ var _require = require('apollo-server-express'),
 
 module.exports = {
   Query: {
-    statuts: function () {
-      var _statuts = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(parent, args, context, info) {
-        var userId, Statuts;
+    projects: function () {
+      var _projects = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(parent, args, context, info) {
+        var userId, projects;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 userId = context.userId;
-                Statuts = context.models.statuts;
+                projects = context.models.projects;
 
                 if (userId) {
                   _context.next = 4;
@@ -28,7 +28,13 @@ module.exports = {
 
               case 4:
                 _context.next = 6;
-                return Statuts.findAll({});
+                return projects.findAll({
+                  include: [{
+                    model: context.models.users
+                  }, {
+                    model: context.models.statuts
+                  }]
+                });
 
               case 6:
                 return _context.abrupt("return", _context.sent);
@@ -41,21 +47,21 @@ module.exports = {
         }, _callee);
       }));
 
-      function statuts(_x, _x2, _x3, _x4) {
-        return _statuts.apply(this, arguments);
+      function projects(_x, _x2, _x3, _x4) {
+        return _projects.apply(this, arguments);
       }
 
-      return statuts;
+      return projects;
     }(),
-    statut: function () {
-      var _statut = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(parent, args, context) {
-        var userId, Statuts;
+    project: function () {
+      var _project = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(parent, args, context) {
+        var userId, projects;
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
                 userId = context.userId;
-                Statuts = context.models.statuts;
+                projects = context.models.projects;
 
                 if (userId) {
                   _context2.next = 4;
@@ -66,10 +72,15 @@ module.exports = {
 
               case 4:
                 _context2.next = 6;
-                return Statuts.findAll({
+                return projects.findOne({
                   where: {
                     id: args.id
-                  }
+                  },
+                  include: [{
+                    model: context.models.users
+                  }, {
+                    model: context.models.statuts
+                  }]
                 });
 
               case 6:
@@ -83,22 +94,22 @@ module.exports = {
         }, _callee2);
       }));
 
-      function statut(_x5, _x6, _x7) {
-        return _statut.apply(this, arguments);
+      function project(_x5, _x6, _x7) {
+        return _project.apply(this, arguments);
       }
 
-      return statut;
+      return project;
     }()
   },
   Mutation: {
-    createStatut: function () {
-      var _createStatut = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(parent, args, context) {
-        var Statuts, userId;
+    createproject: function () {
+      var _createproject = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(parent, args, context) {
+        var projects, userId;
         return regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                Statuts = context.models.statuts;
+                projects = context.models.projects;
                 userId = context.userId;
 
                 if (userId) {
@@ -111,10 +122,7 @@ module.exports = {
               case 4:
                 _context3.prev = 4;
                 _context3.next = 7;
-                return Statuts.create({
-                  name: args.name,
-                  description: args.description
-                });
+                return projects.create(args.input);
 
               case 7:
                 return _context3.abrupt("return", _context3.sent);
@@ -132,15 +140,15 @@ module.exports = {
         }, _callee3, null, [[4, 10]]);
       }));
 
-      function createStatut(_x8, _x9, _x10) {
-        return _createStatut.apply(this, arguments);
+      function createproject(_x8, _x9, _x10) {
+        return _createproject.apply(this, arguments);
       }
 
-      return createStatut;
+      return createproject;
     }(),
-    updateStatut: function () {
-      var _updateStatut = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(parent, args, context) {
-        var userId, Statuts;
+    updateproject: function () {
+      var _updateproject = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(parent, args, context) {
+        var userId, projects;
         return regeneratorRuntime.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
@@ -155,10 +163,10 @@ module.exports = {
                 throw new AuthenticationError('You must login to add Statuts');
 
               case 3:
-                Statuts = context.models.statuts;
+                projects = context.models.projects;
                 _context4.prev = 4;
                 _context4.next = 7;
-                return Statuts.update(args.input, {
+                return projects.update(args.input, {
                   where: {
                     id: args.id
                   }
@@ -166,7 +174,7 @@ module.exports = {
 
               case 7:
                 _context4.next = 9;
-                return Statuts.findOne({
+                return projects.findOne({
                   where: {
                     id: args.id
                   }
@@ -188,21 +196,21 @@ module.exports = {
         }, _callee4, null, [[4, 12]]);
       }));
 
-      function updateStatut(_x11, _x12, _x13) {
-        return _updateStatut.apply(this, arguments);
+      function updateproject(_x11, _x12, _x13) {
+        return _updateproject.apply(this, arguments);
       }
 
-      return updateStatut;
+      return updateproject;
     }(),
-    deleteStatut: function () {
-      var _deleteStatut = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(parent, args, context) {
-        var userId, Statuts;
+    deleteproject: function () {
+      var _deleteproject = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(parent, args, context) {
+        var userId, projects;
         return regeneratorRuntime.wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
                 userId = context.userId;
-                Statuts = context.models.statuts;
+                projects = context.models.projects;
 
                 if (userId) {
                   _context5.next = 4;
@@ -214,7 +222,7 @@ module.exports = {
               case 4:
                 _context5.prev = 4;
                 _context5.next = 7;
-                return Statuts.destroy({
+                return projects.destroy({
                   where: {
                     id: args.id
                   }
@@ -236,11 +244,11 @@ module.exports = {
         }, _callee5, null, [[4, 10]]);
       }));
 
-      function deleteStatut(_x14, _x15, _x16) {
-        return _deleteStatut.apply(this, arguments);
+      function deleteproject(_x14, _x15, _x16) {
+        return _deleteproject.apply(this, arguments);
       }
 
-      return deleteStatut;
+      return deleteproject;
     }()
   }
 };

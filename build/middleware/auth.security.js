@@ -4,7 +4,9 @@ var _jsonwebtoken = _interopRequireDefault(require("jsonwebtoken"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var APP_SECRET = 'GraphQL-is-aw3some';
+var jwTkeys = require("../config/configdata");
+
+var APP_SECRET = jwTkeys.JwtConfig.keys;
 
 function getTokenPayload(token) {
   return _jsonwebtoken["default"].verify(token, APP_SECRET);
@@ -22,15 +24,15 @@ function getUserId(req, authToken) {
       }
 
       var _getTokenPayload = getTokenPayload(token),
-          userId = _getTokenPayload.userId;
+          id = _getTokenPayload.id;
 
-      return userId;
+      return id;
     }
   } else if (authToken) {
     var _getTokenPayload2 = getTokenPayload(authToken),
-        _userId = _getTokenPayload2.userId;
+        _id = _getTokenPayload2.id;
 
-    return _userId;
+    return _id;
   }
 
   throw new Error('Not authenticated');

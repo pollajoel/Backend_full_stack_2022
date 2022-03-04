@@ -2,6 +2,24 @@ const { AuthenticationError } = require('apollo-server-express');
 
 module.exports = {
     Query: {
+
+        projectsTaks: async(_,{projectId}, context, info) =>{
+            
+            const {userId} = context;
+            const tasks = context.models.task;
+            if (!userId) {
+                throw new AuthenticationError('You must login to add Statuts');
+            }
+
+            return await tasks.findAll({
+                include:[
+                    {model: context.models.statuts}, 
+                    {model: context.models.users}
+                ],
+                where:{projectId:projectId}
+            });   
+            
+        },
         tasks: async(parent, args, context, info) => {
 
             const {userId} = context;
@@ -9,8 +27,13 @@ module.exports = {
             if (!userId) {
                 throw new AuthenticationError('You must login to add Statuts');
             }
-            return  await tasks.findAll({});
-            
+            return  await tasks.findAll({
+                include:[
+                            {model: context.models.projects},
+                            {model: context.models.statuts}, 
+                            {model: context.models.users}
+                        ]
+            });  
         },
         task: async(parent, args, context) => {
             const {userId} = context;
@@ -18,8 +41,17 @@ module.exports = {
             if (!userId) {
                 throw new AuthenticationError('You must login to add Statuts');
             }
-            return  await tasks.findOne({where: {id:args.id}});
-        }
+            return  await tasks.findOne({
+                where: {id:args.id},
+                include:[
+                    {model: context.models.projects},
+                    {model: context.models.statuts}, 
+                    {model: context.models.users}
+                ]
+            });
+        },
+
+       
     },
 
     Mutation:{

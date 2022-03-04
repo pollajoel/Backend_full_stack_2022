@@ -18,6 +18,7 @@ module.exports = gql`
         city: String
         country: String
         profil_image: String
+        userrole:Userrole
     }
 
 
@@ -32,6 +33,7 @@ module.exports = gql`
         city: String
         country: String
         profil_image: String
+       
     }
 
 

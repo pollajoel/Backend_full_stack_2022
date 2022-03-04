@@ -9,15 +9,15 @@ var _require = require('apollo-server-express'),
 
 module.exports = {
   Query: {
-    statuts: function () {
-      var _statuts = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(parent, args, context, info) {
-        var userId, Statuts;
+    userroles: function () {
+      var _userroles = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(parent, args, context, info) {
+        var userId, Userroles;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 userId = context.userId;
-                Statuts = context.models.statuts;
+                Userroles = context.models.userroles;
 
                 if (userId) {
                   _context.next = 4;
@@ -28,7 +28,7 @@ module.exports = {
 
               case 4:
                 _context.next = 6;
-                return Statuts.findAll({});
+                return Userroles.findAll({});
 
               case 6:
                 return _context.abrupt("return", _context.sent);
@@ -41,21 +41,21 @@ module.exports = {
         }, _callee);
       }));
 
-      function statuts(_x, _x2, _x3, _x4) {
-        return _statuts.apply(this, arguments);
+      function userroles(_x, _x2, _x3, _x4) {
+        return _userroles.apply(this, arguments);
       }
 
-      return statuts;
+      return userroles;
     }(),
-    statut: function () {
-      var _statut = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(parent, args, context) {
-        var userId, Statuts;
+    userrole: function () {
+      var _userrole = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(parent, args, context) {
+        var userId, Userroles;
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
                 userId = context.userId;
-                Statuts = context.models.statuts;
+                Userroles = context.models.userroles;
 
                 if (userId) {
                   _context2.next = 4;
@@ -66,7 +66,7 @@ module.exports = {
 
               case 4:
                 _context2.next = 6;
-                return Statuts.findAll({
+                return Userroles.findOne({
                   where: {
                     id: args.id
                   }
@@ -83,22 +83,22 @@ module.exports = {
         }, _callee2);
       }));
 
-      function statut(_x5, _x6, _x7) {
-        return _statut.apply(this, arguments);
+      function userrole(_x5, _x6, _x7) {
+        return _userrole.apply(this, arguments);
       }
 
-      return statut;
+      return userrole;
     }()
   },
   Mutation: {
-    createStatut: function () {
-      var _createStatut = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(parent, args, context) {
-        var Statuts, userId;
+    createUserrole: function () {
+      var _createUserrole = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(parent, args, context) {
+        var Userroles, userId;
         return regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                Statuts = context.models.statuts;
+                Userroles = context.models.userroles;
                 userId = context.userId;
 
                 if (userId) {
@@ -111,9 +111,8 @@ module.exports = {
               case 4:
                 _context3.prev = 4;
                 _context3.next = 7;
-                return Statuts.create({
-                  name: args.name,
-                  description: args.description
+                return Userroles.create({
+                  name: args.name
                 });
 
               case 7:
@@ -132,15 +131,15 @@ module.exports = {
         }, _callee3, null, [[4, 10]]);
       }));
 
-      function createStatut(_x8, _x9, _x10) {
-        return _createStatut.apply(this, arguments);
+      function createUserrole(_x8, _x9, _x10) {
+        return _createUserrole.apply(this, arguments);
       }
 
-      return createStatut;
+      return createUserrole;
     }(),
-    updateStatut: function () {
-      var _updateStatut = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(parent, args, context) {
-        var userId, Statuts;
+    updateUserrole: function () {
+      var _updateUserrole = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(parent, args, context) {
+        var userId, Userroles;
         return regeneratorRuntime.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
@@ -155,10 +154,10 @@ module.exports = {
                 throw new AuthenticationError('You must login to add Statuts');
 
               case 3:
-                Statuts = context.models.statuts;
+                Userroles = context.models.userroles;
                 _context4.prev = 4;
                 _context4.next = 7;
-                return Statuts.update(args.input, {
+                return Userroles.update(args.input, {
                   where: {
                     id: args.id
                   }
@@ -166,7 +165,7 @@ module.exports = {
 
               case 7:
                 _context4.next = 9;
-                return Statuts.findOne({
+                return Userroles.findOne({
                   where: {
                     id: args.id
                   }
@@ -188,21 +187,21 @@ module.exports = {
         }, _callee4, null, [[4, 12]]);
       }));
 
-      function updateStatut(_x11, _x12, _x13) {
-        return _updateStatut.apply(this, arguments);
+      function updateUserrole(_x11, _x12, _x13) {
+        return _updateUserrole.apply(this, arguments);
       }
 
-      return updateStatut;
+      return updateUserrole;
     }(),
-    deleteStatut: function () {
-      var _deleteStatut = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(parent, args, context) {
-        var userId, Statuts;
+    deleteUserrole: function () {
+      var _deleteUserrole = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(parent, args, context) {
+        var userId, Userroles;
         return regeneratorRuntime.wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
                 userId = context.userId;
-                Statuts = context.models.statuts;
+                Userroles = context.models.userroles;
 
                 if (userId) {
                   _context5.next = 4;
@@ -214,7 +213,7 @@ module.exports = {
               case 4:
                 _context5.prev = 4;
                 _context5.next = 7;
-                return Statuts.destroy({
+                return Userroles.destroy({
                   where: {
                     id: args.id
                   }
@@ -236,11 +235,11 @@ module.exports = {
         }, _callee5, null, [[4, 10]]);
       }));
 
-      function deleteStatut(_x14, _x15, _x16) {
-        return _deleteStatut.apply(this, arguments);
+      function deleteUserrole(_x14, _x15, _x16) {
+        return _deleteUserrole.apply(this, arguments);
       }
 
-      return deleteStatut;
+      return deleteUserrole;
     }()
   }
 };

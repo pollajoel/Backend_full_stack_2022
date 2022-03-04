@@ -1,6 +1,8 @@
 import {gql} from "apollo-server-express"
 module.exports = gql`
 
+
+
     type Task {
         id: ID!
         name: String!
@@ -8,7 +10,10 @@ module.exports = gql`
         start_date : String!
         end_date : String!
         statutId: Int!
-	    userId : Int!
+	    user: User
+        statut: Statut
+        projects: Project
+        
     }
 
     input taskInput {
@@ -18,6 +23,7 @@ module.exports = gql`
         end_date : String!
         statutId: Int!
 	    userId : Int!
+        
     } 
 
     input updatetaskInput {
@@ -32,6 +38,7 @@ module.exports = gql`
     extend type Query {
         tasks: [Task]
         task(id: ID!): Task
+        projectsTaks(projectId:ID!): [Task]
     }
 
     extend type Mutation{
