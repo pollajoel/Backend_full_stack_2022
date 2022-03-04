@@ -1,10 +1,25 @@
-module.exports = (sequelize, Sequelize) => {
-    const projects = sequelize.define("projects", {
-      start_date:{type: Sequelize.DATE, allowNull:false, default:Date.now()},
-      end_date:{type: Sequelize.DATE, allowNull:false},
-      description:{ type: Sequelize.STRING, allowNull: false},
-      title:{ type: Sequelize.STRING, allowNull: false, unique: true}
+"use strict";
 
-    });
-    return projects;
-  };
+module.exports = function (sequelize, Sequelize) {
+  var projects = sequelize.define("projects", {
+    start_date: {
+      type: Sequelize.DATE,
+      allowNull: false,
+      "default": Date.now()
+    },
+    end_date: {
+      type: Sequelize.DATE,
+      allowNull: false
+    },
+    description: {
+      type: Sequelize.STRING,
+      allowNull: false
+    },
+    title: {
+      type: Sequelize.STRING,
+      allowNull: false,
+      unique: true
+    }
+  });
+  return projects;
+};

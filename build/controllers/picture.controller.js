@@ -1,16 +1,15 @@
+"use strict";
 
-const db = require("../models");
-const picture = db.picture;
-//const Op = db.Sequelize.Op;
+var db = require("../models");
 
-exports.findAll = (req, res)=>{
-  picture.findAll({}).then(data => {
+var picture = db.picture; //const Op = db.Sequelize.Op;
+
+exports.findAll = function (req, res) {
+  picture.findAll({}).then(function (data) {
     res.send(data).status(200);
-  }).catch(err=>{
-    res.status(500).send({message: err.message || "an error occur"});
+  })["catch"](function (err) {
+    res.status(500).send({
+      message: err.message || "an error occur"
+    });
   });
-}
-
-
-
-
+};

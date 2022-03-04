@@ -1,75 +1,9 @@
-import {gql} from "apollo-server-express"
-module.exports = gql`
+"use strict";
 
-    type AuthPayload {
-        token: String
-        user: User
-    }
-    
-    type User {
-        id: ID!
-        name: String!
-        email: String!
-        firstname: String
-        password: String
-        is_admin: String
-        phone: String
-        postal_code: String
-        city: String
-        country: String
-        profil_image: String
-        userrole:Userrole
-    }
+var _apolloServerExpress = require("apollo-server-express");
 
+var _templateObject;
 
-    input userInput {
-        name: String!
-        email: String!
-        firstname: String!
-        password: String!
-        is_admin: String!
-        phone: String
-        postal_code: String
-        city: String
-        country: String
-        profil_image: String
-       
-    }
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-
-    input updateuserInput{
-        name: String
-        email: String
-        firstname: String
-        password: String
-        is_admin: String
-        phone: String
-        postal_code: String
-        city: String
-        country: String
-        profil_image: String
-    }
-
-    type userTokenInput {
-        token: String!
-        user : User!
-    }
-
-   
-
-    extend type Query {
-        users: [User]
-        user(id: ID!): User
-     }
-
-    extend type Mutation{
-        createUser(input:userInput!):User
-        updateUser(id:ID!, input: updateuserInput!):User
-        deleteUser(id:ID!):Int
-        authentification(email:String!, password:String!):userTokenInput
-    }
-
-
-
-
-`
+module.exports = (0, _apolloServerExpress.gql)(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n\n    type AuthPayload {\n        token: String\n        user: User\n    }\n    \n    type User {\n        id: ID!\n        name: String!\n        email: String!\n        firstname: String\n        password: String\n        is_admin: String\n        phone: String\n        postal_code: String\n        city: String\n        country: String\n        profil_image: String\n        userrole:Userrole\n    }\n\n\n    input userInput {\n        name: String!\n        email: String!\n        firstname: String!\n        password: String!\n        is_admin: String!\n        phone: String\n        postal_code: String\n        city: String\n        country: String\n        profil_image: String\n       \n    }\n\n\n    input updateuserInput{\n        name: String\n        email: String\n        firstname: String\n        password: String\n        is_admin: String\n        phone: String\n        postal_code: String\n        city: String\n        country: String\n        profil_image: String\n    }\n\n    type userTokenInput {\n        token: String!\n        user : User!\n    }\n\n   \n\n    extend type Query {\n        users: [User]\n        user(id: ID!): User\n     }\n\n    extend type Mutation{\n        createUser(input:userInput!):User\n        updateUser(id:ID!, input: updateuserInput!):User\n        deleteUser(id:ID!):Int\n        authentification(email:String!, password:String!):userTokenInput\n    }\n\n\n\n\n"])));

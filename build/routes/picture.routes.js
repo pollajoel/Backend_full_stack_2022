@@ -1,7 +1,10 @@
-const express = require("express");
-const router = express.Router();
-const picture  = require("../controllers/picture.controller")
+"use strict";
 
+var express = require("express");
 
-router.get("/picture",picture.findAll);
-module.exports = router
+var router = express.Router();
+
+var picture = require("../controllers/picture.controller");
+
+router.get("/picture", picture.findAll);
+module.exports = router;
