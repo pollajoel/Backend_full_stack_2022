@@ -1,9 +1,24 @@
-"use strict";
+import {gql} from "apollo-server-express"
+module.exports = gql`
+    type Statut {
+        id:ID!
+        name: String
+        description: String
+    }
 
-var _apolloServerExpress = require("apollo-server-express");
+    input Statutinput {
+        name: String
+        description: String
+    }
 
-var _templateObject;
+    extend type Query {
+        statuts: [Statut]
+        statut(id: ID!): Statut
+     }
 
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-module.exports = (0, _apolloServerExpress.gql)(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    type Statut {\n        id:ID!\n        name: String\n        description: String\n    }\n\n    input Statutinput {\n        name: String\n        description: String\n    }\n\n    extend type Query {\n        statuts: [Statut]\n        statut(id: ID!): Statut\n     }\n\n    extend type Mutation{\n        createStatut(name: String!, description: String!):Statut\n        updateStatut(id:ID!, input: Statutinput):Statut\n        deleteStatut(id:ID!):Int\n    }\n"])));
+    extend type Mutation{
+        createStatut(name: String!, description: String!):Statut
+        updateStatut(id:ID!, input: Statutinput):Statut
+        deleteStatut(id:ID!):Int
+    }
+`

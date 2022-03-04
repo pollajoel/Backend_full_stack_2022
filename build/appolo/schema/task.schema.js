@@ -1,9 +1,54 @@
-"use strict";
+import {gql} from "apollo-server-express"
+module.exports = gql`
 
-var _apolloServerExpress = require("apollo-server-express");
 
-var _templateObject;
 
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+    type Task {
+        id: ID!
+        name: String!
+        description: String!
+        start_date : String!
+        end_date : String!
+        statutId: Int!
+	    user: User
+        statut: Statut
+        projects: Project
+        
+    }
 
-module.exports = (0, _apolloServerExpress.gql)(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n\n\n\n    type Task {\n        id: ID!\n        name: String!\n        description: String!\n        start_date : String!\n        end_date : String!\n        statutId: Int!\n\t    user: User\n        statut: Statut\n        projects: Project\n        \n    }\n\n    input taskInput {\n        name: String!\n        description: String!\n        start_date : String!\n        end_date : String!\n        statutId: Int!\n\t    userId : Int!\n        \n    } \n\n    input updatetaskInput {\n        name: String\n        description: String\n        start_date : String\n        end_date : String\n        statutId: Int\n\t    userId : Int\n    } \n\n    extend type Query {\n        tasks: [Task]\n        task(id: ID!): Task\n        projectsTaks(projectId:ID!): [Task]\n    }\n\n    extend type Mutation{\n        createtask(input: taskInput):Task\n        updatetask(id:ID!, input:updatetaskInput):Task\n        deletetask(id:ID!):Int\n    }\n\n\n\n\n\n"])));
+    input taskInput {
+        name: String!
+        description: String!
+        start_date : String!
+        end_date : String!
+        statutId: Int!
+	    userId : Int!
+        
+    } 
+
+    input updatetaskInput {
+        name: String
+        description: String
+        start_date : String
+        end_date : String
+        statutId: Int
+	    userId : Int
+    } 
+
+    extend type Query {
+        tasks: [Task]
+        task(id: ID!): Task
+        projectsTaks(projectId:ID!): [Task]
+    }
+
+    extend type Mutation{
+        createtask(input: taskInput):Task
+        updatetask(id:ID!, input:updatetaskInput):Task
+        deletetask(id:ID!):Int
+    }
+
+
+
+
+
+`
