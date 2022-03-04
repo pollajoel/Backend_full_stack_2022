@@ -5,7 +5,6 @@ var dbConfig = require("../config/db.config.js");
 var Sequelize = require("sequelize");
 /* connexion with mysql database */
 
-/*
 
 var sequelize = new Sequelize({
   operatorsAliases: 0,
@@ -19,13 +18,11 @@ var sequelize = new Sequelize({
     ssl: process.env.DB_SSL == "true"
   }
 });
-*/
-
-connexion with sqlite database 
+/* connexion with sqlite database 
 const sequelize = new Sequelize("sqlite::memory:",{
  logging: console.log
 });
-
+*/
 
 var db = {};
 db.sequelize = sequelize;
