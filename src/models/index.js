@@ -2,8 +2,8 @@ const dbConfig = require("../config/db.config.js");
 const Sequelize = require("sequelize");
 
 /* connexion with mysql database */
+
 const sequelize = new Sequelize({
-  
     operatorsAliases: 0,
     database:  process.env.DB_SCHEMA || 'ardenaise',
     username:  process.env.DB_USER || 'postgres',
