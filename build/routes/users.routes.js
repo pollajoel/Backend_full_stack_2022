@@ -8,7 +8,7 @@ var user = require("../controllers/user.controller");
 
 var Secure = require("../middleware/secureRoute.middleware");
 
-router.get("/users", user.findAll);
+router.get("/users", Secure.authenticateJWT, user.findAll);
 router.get("/user/:id", Secure.authenticateJWT, user.findById);
 router.post("/user", user.register);
 router.put("/user/:id", Secure.authenticateJWT, user.update);
