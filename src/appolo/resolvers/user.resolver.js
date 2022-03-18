@@ -12,7 +12,7 @@ module.exports = {
             const {userId} = context;
             const User = context.models.users;
             if (!userId) {
-                throw new AuthenticationError('You must login to add Statuts');
+                throw new AuthenticationError('You must login');
               }
             return await User.findAll(
                 {include:[{model:context.models.userroles}]}
@@ -23,7 +23,7 @@ module.exports = {
             const {userId} = context;
             const User = context.models.users;
             if (!userId) {
-                throw new AuthenticationError('You must login to add Statuts');
+                throw new AuthenticationError('You must login');
             }
                 return  await User.findOne({
                     where: {id:args.id},
@@ -36,9 +36,9 @@ module.exports = {
             const User = context.models.users;
 
             const {userId} = context;
-            if (!userId) {
-                throw new AuthenticationError('You must login to add Statuts');
-            }
+            //if (!userId) {
+            //    throw new AuthenticationError('You must login');
+            //}
 
             try{
 
@@ -53,7 +53,7 @@ module.exports = {
 
             const {userId} = context;
             if (!userId) {
-                throw new AuthenticationError('You must login to add Statuts');
+                throw new AuthenticationError('You must login');
             }
             const User = context.models.users;
             try{
@@ -70,7 +70,7 @@ module.exports = {
             const {userId} = context;
             const User = context.models.users;
             if (!userId) {
-                throw new AuthenticationError('You must login to add Statuts');
+                throw new AuthenticationError('You must login');
             }
             try{
                 return await User.destroy({where: {id: args.id}});
