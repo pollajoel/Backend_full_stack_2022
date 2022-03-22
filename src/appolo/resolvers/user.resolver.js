@@ -29,7 +29,19 @@ module.exports = {
                     where: {id:args.id},
                     include:[{model: context.models.userroles}]
                 });
-        }
+        },
+		getMe: async(parent, args, context) => {
+			 const {userId} = context;
+			 const User = context.models.users;
+			  if (!userId) {
+                throw new AuthenticationError('You must login');
+              }
+			  return  await User.findOne({
+                    where: {id:userId},
+                    include:[{model: context.models.userroles}]
+                });
+			  
+		}
     },
     Mutation:{
         createUser: async(parent, args, context) => {
@@ -42,7 +54,7 @@ module.exports = {
 
             try{
 
-                return  await User.create(args.input);
+                return  await User.create(args.registuser);
 
             }catch(e){
                 throw new Error(e)

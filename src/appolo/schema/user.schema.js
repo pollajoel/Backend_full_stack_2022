@@ -60,10 +60,11 @@ module.exports = gql`
     extend type Query {
         users: [User]
         user(id: ID!): User
+		getMe: User
      }
 
     extend type Mutation{
-        createUser(input:userInput!):User
+        createUser(registuser:userInput!):User
         updateUser(id:ID!, input: updateuserInput!):User
         deleteUser(id:ID!):Int
         authentification(email:String!, password:String!):userTokenInput
