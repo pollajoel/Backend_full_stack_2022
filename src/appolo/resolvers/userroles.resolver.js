@@ -51,7 +51,7 @@ module.exports = {
             }
             const Userroles = context.models.userroles;
             try{
-                await Userroles.update( args.input,{where: { id: args.id }});
+                await Userroles.update( args.Userroleinput,{where: { id: args.id }});
                 return await Userroles.findOne({where: { id: args.id}})
             }catch(e){
                 throw new Error(e)

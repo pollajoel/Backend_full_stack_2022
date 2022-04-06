@@ -1,11 +1,11 @@
 const dbConfig = require("../config/db.config.js");
 const Sequelize = require("sequelize");
 
-/* connexion with mysql database */
-/*
+/* connexion with mysql database 
+
 const sequelize = new Sequelize({
     operatorsAliases: 0,
-    database:  process.env.DB_SCHEMA || 'ardenaise',
+    database:  process.env.DB_SCHEMA || 'test',
     username:  process.env.DB_USER || 'postgres',
     password:  process.env.DB_PASSWORD || 'admin',
         host:  process.env.DB_HOST|| 'localhost',
@@ -17,12 +17,13 @@ const sequelize = new Sequelize({
     }
 
   });
+
 */
 
-// connexion with sqlite database 
 const sequelize = new Sequelize("sqlite::memory:",{
  logging: console.log
 });
+
 
 const db = {};
 db.sequelize = sequelize;

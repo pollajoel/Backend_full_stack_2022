@@ -61,7 +61,7 @@ exports.findAll = (req, res) => {
       const id = req.params.id;
       task.findAll(
         {
-          include:[{model:project}, {model:statuts},{model:user}],
+          include:[{model:project}, {model:statuts},{model:user}, {model:task}],
           where: {id: id},
         }
       ).then( taskdata =>{

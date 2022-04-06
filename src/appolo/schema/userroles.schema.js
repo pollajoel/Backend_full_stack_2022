@@ -17,7 +17,7 @@ module.exports = gql`
     
     extend type Mutation{
         createUserrole(name: String!):Userrole
-        updateUserrole(id:ID!, input: Userroleinput):Userrole
+        updateUserrole(id:ID!,Userroleinput: Userroleinput):Userrole
         deleteUserrole(id:ID!):Int
     }
     

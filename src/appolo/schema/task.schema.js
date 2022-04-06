@@ -13,6 +13,7 @@ module.exports = gql`
 	    user: User
         statut: Statut
         projects: Project
+		projectId: Int
         
     }
 
@@ -23,16 +24,16 @@ module.exports = gql`
         end_date : String!
         statutId: Int!
 	    userId : Int!
+		projectId: Int
         
     } 
 
     input updatetaskInput {
         name: String
         description: String
-        start_date : String
-        end_date : String
         statutId: Int
 	    userId : Int
+		projectId: Int
     } 
 
     extend type Query {
@@ -42,8 +43,8 @@ module.exports = gql`
     }
 
     extend type Mutation{
-        createtask(input: taskInput):Task
-        updatetask(id:ID!, input:updatetaskInput):Task
+        createtask(taskInput: taskInput):Task
+        updatetask(id:ID!, updatetaskInput:updatetaskInput):Task
         deletetask(id:ID!):Int
     }
 

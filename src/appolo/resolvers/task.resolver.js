@@ -8,7 +8,7 @@ module.exports = {
             const {userId} = context;
             const tasks = context.models.task;
             if (!userId) {
-                throw new AuthenticationError('You must login to add Statuts');
+                //throw new AuthenticationError('You must login to add Statuts');
             }
 
             return await tasks.findAll({
@@ -24,9 +24,10 @@ module.exports = {
 
             const {userId} = context;
             const tasks = context.models.task;
-            if (!userId) {
+            /*if (!userId) {
                 throw new AuthenticationError('You must login to add Statuts');
             }
+			*/
             return  await tasks.findAll({
                 include:[
                             {model: context.models.projects},
@@ -63,7 +64,7 @@ module.exports = {
                 throw new AuthenticationError('You must login to add Statuts');
             }
             try{
-                return  await task.create(args.input);
+                return  await task.create(args.taskInput);
             }catch(e){
                 throw new Error(e)
             }
@@ -77,7 +78,7 @@ module.exports = {
             }
             const tasksModel = context.models.task;
             try{
-                await tasksModel.update( args.input,{where: { id: args.id }});
+                await tasksModel.update( args.updatetaskInput,{where: { id: args.id }});
                 return await tasksModel.findOne({where: { id: args.id}})
             }catch(e){
                 throw new Error(e)

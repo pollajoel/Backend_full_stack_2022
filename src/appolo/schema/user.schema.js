@@ -12,11 +12,10 @@ module.exports = gql`
         email: String!
         firstname: String
         password: String
-        is_admin: String
+        is_admin: Boolean
         phone: String
         postal_code: String
         city: String
-        country: String
         profil_image: String
         userrole:Userrole
     }
@@ -27,11 +26,10 @@ module.exports = gql`
         email: String!
         firstname: String!
         password: String!
-        is_admin: String!
+        is_admin: Boolean!
         phone: String
         postal_code: String
         city: String
-        country: String
         profil_image: String
        
     }
@@ -42,11 +40,10 @@ module.exports = gql`
         email: String
         firstname: String
         password: String
-        is_admin: String
+        is_admin: Boolean
         phone: String
         postal_code: String
         city: String
-        country: String
         profil_image: String
     }
 
@@ -65,7 +62,7 @@ module.exports = gql`
 
     extend type Mutation{
         createUser(registuser:userInput!):User
-        updateUser(id:ID!, input: updateuserInput!):User
+        updateUser(id:ID!, updtateUserinput: updateuserInput!):User
         deleteUser(id:ID!):Int
         authentification(email:String!, password:String!):userTokenInput
     }

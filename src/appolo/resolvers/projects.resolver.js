@@ -39,11 +39,12 @@ module.exports = {
             const projects = context.models.projects;
 
             const {userId} = context;
+			
             if (!userId) {
                 throw new AuthenticationError('You must login to add Statuts');
             }
             try{
-                return  await projects.create(args.input);
+                return  await projects.create(args.projectdataInput);
             }catch(e){
                 throw new Error(e)
             }
@@ -57,7 +58,7 @@ module.exports = {
             }
             const projects = context.models.projects;
             try{
-                await projects.update( args.input,{where: { id: args.id }});
+                await projects.update( args.projectInputUpdate,{where: { id: args.id }});
                 return await projects.findOne({where: { id: args.id}})
             }catch(e){
                 throw new Error(e)
@@ -70,7 +71,7 @@ module.exports = {
             const {userId} = context;
             const projects = context.models.projects;
             if (!userId) {
-                throw new AuthenticationError('You must login to add Statuts');
+                throw new AuthenticationError('You must login to delete user');
             }
             try{
                 return await projects.destroy({where: {id: args.id}});

@@ -38,8 +38,8 @@ module.exports = gql`
     }
 
     extend type Mutation{
-        createproject(input: projectdataInput):Project
-        updateproject(id:ID!, input:projectInputUpdate):Project
+        createproject( projectdataInput: projectdataInput):Project
+        updateproject(id:ID!, projectInputUpdate:projectInputUpdate):Project
         deleteproject(id:ID!):Int
     }
 

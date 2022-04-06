@@ -69,7 +69,7 @@ module.exports = {
             }
             const User = context.models.users;
             try{
-                await User.update( args.input,{where: { id: args.id }});
+                await User.update( args.updtateUserinput,{where: { id: args.id }});
                 return await User.findOne({where: { id: args.id}})
             }catch(e){
                 throw new Error(e)

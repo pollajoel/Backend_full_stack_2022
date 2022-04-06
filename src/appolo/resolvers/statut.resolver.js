@@ -30,9 +30,11 @@ module.exports = {
             }
 
             try{
+				console.log( args )
                 return await Statuts.create({
                     name:args.name,
-                    description:args.description
+                    description:args.description,
+					color: args.color
                 });
             }catch(e){
                 throw new Error(e)
@@ -47,7 +49,7 @@ module.exports = {
             }
             const Statuts = context.models.statuts;
             try{
-                await Statuts.update( args.input,{where: { id: args.id }});
+                await Statuts.update( args.Statutinput,{where: { id: args.id }});
                 return await Statuts.findOne({where: { id: args.id}})
             }catch(e){
                 throw new Error(e)
