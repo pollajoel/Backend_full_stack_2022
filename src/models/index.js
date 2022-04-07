@@ -19,8 +19,7 @@ const sequelize = new Sequelize({
   });
 
 
-*/
-
+/*
 const sequelize = new Sequelize("sqlite::memory:",{
  logging: console.log
 });
