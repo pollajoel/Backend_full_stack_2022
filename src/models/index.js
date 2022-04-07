@@ -1,14 +1,14 @@
 const dbConfig = require("../config/db.config.js");
 const Sequelize = require("sequelize");
 
-/* connexion with mysql database 
+/* connexion with mysql database */
 
 const sequelize = new Sequelize({
     operatorsAliases: 0,
-    database:  process.env.DB_SCHEMA || 'test',
+    database:  process.env.DB_SCHEMA || 'planning_db',
     username:  process.env.DB_USER || 'postgres',
     password:  process.env.DB_PASSWORD || 'admin',
-        host:  process.env.DB_HOST|| 'localhost',
+        host:  process.env.DB_HOST|| 'pgsql://postgres:admin@127.0.0.1:5432/planning_db?serverVersion=13&charset=utf8',
         port:  process.env.DB_PORT || 5432,
     dialect: 'postgres',
     dialectOptions: 
@@ -18,12 +18,13 @@ const sequelize = new Sequelize({
 
   });
 
+
 */
 
 const sequelize = new Sequelize("sqlite::memory:",{
  logging: console.log
 });
-
+*/
 
 const db = {};
 db.sequelize = sequelize;
