@@ -5,7 +5,7 @@ var dbConfig = require("../config/db.config.js");
 var Sequelize = require("sequelize");
 /* connexion with mysql database */
 
-
+/*
 const sequelize = new Sequelize({
     operatorsAliases: 0,
     database:  process.env.DB_SCHEMA || 'ardenaise',
@@ -20,13 +20,13 @@ const sequelize = new Sequelize({
     }
 
   });
-
+*/
 // connexion with sqlite database 
 
-/*
-var sequelize = new Sequelize("sqlite::memory:", {
-  logging: console.log
-});*/
+
+const sequelize = new Sequelize('sqlite::memory:') 
+// Example for sqlite
+
 var db = {};
 db.sequelize = sequelize;
 db.projects = require("./projects.model")(sequelize, Sequelize);
