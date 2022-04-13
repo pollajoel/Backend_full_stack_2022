@@ -43,7 +43,8 @@ var graphQlServer = new ApolloServer({
   introspection: true,
   playground: {
     settings: {
-      'schema.polling.enable': false
+      'schema.polling.enable': false,
+      "editor.theme": "light"
     }
   },
   typeDefs: schema,

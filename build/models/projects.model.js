@@ -3,12 +3,12 @@
 module.exports = function (sequelize, Sequelize) {
   var projects = sequelize.define("projects", {
     start_date: {
-      type: Sequelize.DATE,
+      type: Sequelize.DATEONLY,
       allowNull: false,
       "default": Date.now()
     },
     end_date: {
-      type: Sequelize.DATE,
+      type: Sequelize.DATEONLY,
       allowNull: false
     },
     description: {

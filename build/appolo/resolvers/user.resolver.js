@@ -32,7 +32,7 @@ module.exports = {
                   break;
                 }
 
-                throw new AuthenticationError('You must login to add Statuts');
+                throw new AuthenticationError('You must login');
 
               case 4:
                 _context.next = 6;
@@ -74,7 +74,7 @@ module.exports = {
                   break;
                 }
 
-                throw new AuthenticationError('You must login to add Statuts');
+                throw new AuthenticationError('You must login');
 
               case 4:
                 _context2.next = 6;
@@ -103,81 +103,120 @@ module.exports = {
       }
 
       return user;
-    }()
-  },
-  Mutation: {
-    createUser: function () {
-      var _createUser = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(parent, args, context) {
-        var User, userId;
+    }(),
+    getMe: function () {
+      var _getMe = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(parent, args, context) {
+        var userId, User;
         return regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                User = context.models.users;
                 userId = context.userId;
+                User = context.models.users;
 
                 if (userId) {
                   _context3.next = 4;
                   break;
                 }
 
-                throw new AuthenticationError('You must login to add Statuts');
+                throw new AuthenticationError('You must login');
 
               case 4:
-                _context3.prev = 4;
-                _context3.next = 7;
-                return User.create(args.input);
+                _context3.next = 6;
+                return User.findOne({
+                  where: {
+                    id: userId
+                  },
+                  include: [{
+                    model: context.models.userroles
+                  }]
+                });
 
-              case 7:
+              case 6:
                 return _context3.abrupt("return", _context3.sent);
 
-              case 10:
-                _context3.prev = 10;
-                _context3.t0 = _context3["catch"](4);
-                throw new Error(_context3.t0);
-
-              case 13:
+              case 7:
               case "end":
                 return _context3.stop();
             }
           }
-        }, _callee3, null, [[4, 10]]);
+        }, _callee3);
       }));
 
-      function createUser(_x8, _x9, _x10) {
+      function getMe(_x8, _x9, _x10) {
+        return _getMe.apply(this, arguments);
+      }
+
+      return getMe;
+    }()
+  },
+  Mutation: {
+    createUser: function () {
+      var _createUser = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(parent, args, context) {
+        var User, userId;
+        return regeneratorRuntime.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                User = context.models.users;
+                userId = context.userId; //if (!userId) {
+                //    throw new AuthenticationError('You must login');
+                //}
+
+                _context4.prev = 2;
+                _context4.next = 5;
+                return User.create(args.registuser);
+
+              case 5:
+                return _context4.abrupt("return", _context4.sent);
+
+              case 8:
+                _context4.prev = 8;
+                _context4.t0 = _context4["catch"](2);
+                throw new Error(_context4.t0);
+
+              case 11:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, null, [[2, 8]]);
+      }));
+
+      function createUser(_x11, _x12, _x13) {
         return _createUser.apply(this, arguments);
       }
 
       return createUser;
     }(),
     updateUser: function () {
-      var _updateUser = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(parent, args, context) {
+      var _updateUser = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(parent, args, context) {
         var userId, User;
-        return regeneratorRuntime.wrap(function _callee4$(_context4) {
+        return regeneratorRuntime.wrap(function _callee5$(_context5) {
           while (1) {
-            switch (_context4.prev = _context4.next) {
+            switch (_context5.prev = _context5.next) {
               case 0:
                 userId = context.userId;
 
                 if (userId) {
-                  _context4.next = 3;
+                  _context5.next = 3;
                   break;
                 }
 
-                throw new AuthenticationError('You must login to add Statuts');
+                throw new AuthenticationError('You must login');
 
               case 3:
                 User = context.models.users;
-                _context4.prev = 4;
-                _context4.next = 7;
-                return User.update(args.input, {
+                _context5.prev = 4;
+                _context5.next = 7;
+                return User.update(args.updtateUserinput, {
                   where: {
                     id: args.id
                   }
                 });
 
               case 7:
-                _context4.next = 9;
+                _context5.next = 9;
                 return User.findOne({
                   where: {
                     id: args.id
@@ -185,47 +224,47 @@ module.exports = {
                 });
 
               case 9:
-                return _context4.abrupt("return", _context4.sent);
+                return _context5.abrupt("return", _context5.sent);
 
               case 12:
-                _context4.prev = 12;
-                _context4.t0 = _context4["catch"](4);
-                throw new Error(_context4.t0);
+                _context5.prev = 12;
+                _context5.t0 = _context5["catch"](4);
+                throw new Error(_context5.t0);
 
               case 15:
               case "end":
-                return _context4.stop();
+                return _context5.stop();
             }
           }
-        }, _callee4, null, [[4, 12]]);
+        }, _callee5, null, [[4, 12]]);
       }));
 
-      function updateUser(_x11, _x12, _x13) {
+      function updateUser(_x14, _x15, _x16) {
         return _updateUser.apply(this, arguments);
       }
 
       return updateUser;
     }(),
     deleteUser: function () {
-      var _deleteUser = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(parent, args, context) {
+      var _deleteUser = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(parent, args, context) {
         var userId, User;
-        return regeneratorRuntime.wrap(function _callee5$(_context5) {
+        return regeneratorRuntime.wrap(function _callee6$(_context6) {
           while (1) {
-            switch (_context5.prev = _context5.next) {
+            switch (_context6.prev = _context6.next) {
               case 0:
                 userId = context.userId;
                 User = context.models.users;
 
                 if (userId) {
-                  _context5.next = 4;
+                  _context6.next = 4;
                   break;
                 }
 
-                throw new AuthenticationError('You must login to add Statuts');
+                throw new AuthenticationError('You must login');
 
               case 4:
-                _context5.prev = 4;
-                _context5.next = 7;
+                _context6.prev = 4;
+                _context6.next = 7;
                 return User.destroy({
                   where: {
                     id: args.id
@@ -233,37 +272,37 @@ module.exports = {
                 });
 
               case 7:
-                return _context5.abrupt("return", _context5.sent);
+                return _context6.abrupt("return", _context6.sent);
 
               case 10:
-                _context5.prev = 10;
-                _context5.t0 = _context5["catch"](4);
-                throw new Error(_context5.t0);
+                _context6.prev = 10;
+                _context6.t0 = _context6["catch"](4);
+                throw new Error(_context6.t0);
 
               case 13:
               case "end":
-                return _context5.stop();
+                return _context6.stop();
             }
           }
-        }, _callee5, null, [[4, 10]]);
+        }, _callee6, null, [[4, 10]]);
       }));
 
-      function deleteUser(_x14, _x15, _x16) {
+      function deleteUser(_x17, _x18, _x19) {
         return _deleteUser.apply(this, arguments);
       }
 
       return deleteUser;
     }(),
     authentification: function () {
-      var _authentification = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(_, _ref, context) {
+      var _authentification = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7(_, _ref, context) {
         var email, password, userModel, user, hashedPassword, isValid, token;
-        return regeneratorRuntime.wrap(function _callee6$(_context6) {
+        return regeneratorRuntime.wrap(function _callee7$(_context7) {
           while (1) {
-            switch (_context6.prev = _context6.next) {
+            switch (_context7.prev = _context7.next) {
               case 0:
                 email = _ref.email, password = _ref.password;
                 userModel = context.models.users;
-                _context6.next = 4;
+                _context7.next = 4;
                 return userModel.findOne({
                   where: {
                     email: email
@@ -271,10 +310,10 @@ module.exports = {
                 });
 
               case 4:
-                user = _context6.sent;
+                user = _context7.sent;
 
                 if (user) {
-                  _context6.next = 7;
+                  _context7.next = 7;
                   break;
                 }
 
@@ -285,7 +324,7 @@ module.exports = {
                 isValid = bcrypt.compareSync(password, hashedPassword);
 
                 if (isValid) {
-                  _context6.next = 11;
+                  _context7.next = 11;
                   break;
                 }
 
@@ -298,20 +337,20 @@ module.exports = {
                 }, APP_SECRET, {
                   expiresIn: 86400
                 });
-                return _context6.abrupt("return", {
+                return _context7.abrupt("return", {
                   token: token,
                   user: user
                 });
 
               case 13:
               case "end":
-                return _context6.stop();
+                return _context7.stop();
             }
           }
-        }, _callee6);
+        }, _callee7);
       }));
 
-      function authentification(_x17, _x18, _x19) {
+      function authentification(_x20, _x21, _x22) {
         return _authentification.apply(this, arguments);
       }
 

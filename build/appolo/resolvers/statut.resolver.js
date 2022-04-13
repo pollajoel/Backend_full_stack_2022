@@ -110,26 +110,28 @@ module.exports = {
 
               case 4:
                 _context3.prev = 4;
-                _context3.next = 7;
+                console.log(args);
+                _context3.next = 8;
                 return Statuts.create({
                   name: args.name,
-                  description: args.description
+                  description: args.description,
+                  color: args.color
                 });
 
-              case 7:
+              case 8:
                 return _context3.abrupt("return", _context3.sent);
 
-              case 10:
-                _context3.prev = 10;
+              case 11:
+                _context3.prev = 11;
                 _context3.t0 = _context3["catch"](4);
                 throw new Error(_context3.t0);
 
-              case 13:
+              case 14:
               case "end":
                 return _context3.stop();
             }
           }
-        }, _callee3, null, [[4, 10]]);
+        }, _callee3, null, [[4, 11]]);
       }));
 
       function createStatut(_x8, _x9, _x10) {
@@ -158,7 +160,7 @@ module.exports = {
                 Statuts = context.models.statuts;
                 _context4.prev = 4;
                 _context4.next = 7;
-                return Statuts.update(args.input, {
+                return Statuts.update(args.Statutinput, {
                   where: {
                     id: args.id
                   }

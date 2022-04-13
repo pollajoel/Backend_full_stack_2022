@@ -157,7 +157,7 @@ module.exports = {
                 Userroles = context.models.userroles;
                 _context4.prev = 4;
                 _context4.next = 7;
-                return Userroles.update(args.input, {
+                return Userroles.update(args.Userroleinput, {
                   where: {
                     id: args.id
                   }

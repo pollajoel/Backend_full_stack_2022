@@ -91,6 +91,8 @@ exports.findById = function (req, res) {
       model: statuts
     }, {
       model: user
+    }, {
+      model: task
     }],
     where: {
       id: id

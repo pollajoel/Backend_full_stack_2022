@@ -32,6 +32,8 @@ module.exports = gql`
         name: String
         description: String
         statutId: Int
+		start_date : String
+		end_date : String
 	    userId : Int
 		projectId: Int
     } 

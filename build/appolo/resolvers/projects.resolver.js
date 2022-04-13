@@ -122,7 +122,7 @@ module.exports = {
               case 4:
                 _context3.prev = 4;
                 _context3.next = 7;
-                return projects.create(args.input);
+                return projects.create(args.projectdataInput);
 
               case 7:
                 return _context3.abrupt("return", _context3.sent);
@@ -166,7 +166,7 @@ module.exports = {
                 projects = context.models.projects;
                 _context4.prev = 4;
                 _context4.next = 7;
-                return projects.update(args.input, {
+                return projects.update(args.projectInputUpdate, {
                   where: {
                     id: args.id
                   }
@@ -217,7 +217,7 @@ module.exports = {
                   break;
                 }
 
-                throw new AuthenticationError('You must login to add Statuts');
+                throw new AuthenticationError('You must login to delete user');
 
               case 4:
                 _context5.prev = 4;

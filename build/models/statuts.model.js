@@ -10,6 +10,11 @@ module.exports = function (sequelize, Sequelize) {
     description: {
       type: Sequelize.STRING,
       allowNull: false
+    },
+    color: {
+      type: Sequelize.STRING,
+      allowNull: false,
+      unique: true
     }
   });
   return statuts;

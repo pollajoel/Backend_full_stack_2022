@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: scheduler-deployment
+    labels:
+        app: scheduler
+spec:
+    selector:
+        matchLabels:
+            app: scheduler-pod
+    template:
+        metadata:
+            labels:
+                app: scheduler-pod
+        spec:
+            containers:
+            - image:  pollajoel/scheduler:latest
+              name: scheduler-container
+              ports:
+              - containerPort: 4000
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: scheduler-service
+spec:
+    selector:
+        app: scheduler-pod
+    ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 80

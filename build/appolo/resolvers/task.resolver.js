@@ -20,15 +20,10 @@ module.exports = {
                 userId = context.userId;
                 tasks = context.models.task;
 
-                if (userId) {
-                  _context.next = 5;
-                  break;
+                if (!userId) {//throw new AuthenticationError('You must login to add Statuts');
                 }
 
-                throw new AuthenticationError('You must login to add Statuts');
-
-              case 5:
-                _context.next = 7;
+                _context.next = 6;
                 return tasks.findAll({
                   include: [{
                     model: context.models.statuts
@@ -40,10 +35,10 @@ module.exports = {
                   }
                 });
 
-              case 7:
+              case 6:
                 return _context.abrupt("return", _context.sent);
 
-              case 8:
+              case 7:
               case "end":
                 return _context.stop();
             }
@@ -66,16 +61,12 @@ module.exports = {
               case 0:
                 userId = context.userId;
                 tasks = context.models.task;
-
-                if (userId) {
-                  _context2.next = 4;
-                  break;
+                /*if (!userId) {
+                    throw new AuthenticationError('You must login to add Statuts');
                 }
+                */
 
-                throw new AuthenticationError('You must login to add Statuts');
-
-              case 4:
-                _context2.next = 6;
+                _context2.next = 4;
                 return tasks.findAll({
                   include: [{
                     model: context.models.projects
@@ -86,10 +77,10 @@ module.exports = {
                   }]
                 });
 
-              case 6:
+              case 4:
                 return _context2.abrupt("return", _context2.sent);
 
-              case 7:
+              case 5:
               case "end":
                 return _context2.stop();
             }
@@ -174,7 +165,7 @@ module.exports = {
               case 4:
                 _context4.prev = 4;
                 _context4.next = 7;
-                return task.create(args.input);
+                return task.create(args.taskInput);
 
               case 7:
                 return _context4.abrupt("return", _context4.sent);
@@ -218,7 +209,7 @@ module.exports = {
                 tasksModel = context.models.task;
                 _context5.prev = 4;
                 _context5.next = 7;
-                return tasksModel.update(args.input, {
+                return tasksModel.update(args.updatetaskInput, {
                   where: {
                     id: args.id
                   }
