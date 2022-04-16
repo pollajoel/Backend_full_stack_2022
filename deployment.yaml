@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
     name: scheduler-deployment
     labels:
-        app: scheduler
+         
 spec:
     selector:
         matchLabels:
