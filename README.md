@@ -1,6 +1,11 @@
 # __Application de gestion de projet__ 
-## Description du projet
+```
+kubectl apply -f deployment.yaml
+```
 
+
+
+## Description du projet
 Dans ce projet, j'ai mis sur pied une application de gestion de projet avec les fonctionnalités ci-dessous:
 
 ### Fonctionnalités:
