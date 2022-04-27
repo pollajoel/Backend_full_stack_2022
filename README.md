@@ -27,4 +27,28 @@ Dans ce projet, j'ai mis sur pied une application de gestion de projet avec les 
 - Graphql
 ##### Package installés:
 
+- "@babel/cli": "^7.16.0",
+- "@babel/core": "^7.16.0",
+- "@babel/node": "^7.16.0",
+- "@babel/preset-env": "^7.16.0",
+- "apollo-server": "^2.25.3",
+- "apollo-server-express": "^2.21.0",
+- "babel-install": "^2.1.0",
+- "bcrypt": "^5.0.1",
+- "body-parser": "^1.19.0",
+- "cors": "^2.8.5",
+- "dotenv": "^16.0.0",
+- "express": "^4.17.1",
+- "express-basic-auth": "^1.2.0",
+- "graphql": "^14.7.0",
+- "graphql-tools": "^8.2.0",
+- "joi": "^17.4.2",
+- "jsonwebtoken": "^8.5.1",
+- "mysql": "^2.18.1",
+- "mysql2": "^2.3.3-rc.0",
+- "pg": "^8.7.1",
+- "sequelize": "^6.9.0",
+- "sqlite3": "^5.0.2",
+- "swagger-ui-express": "^4.1.6"
+
 ###### Version du projet: 1.0
