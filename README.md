@@ -1,9 +1,12 @@
 # __Application de gestion de projet__ 
+créer le deploiement
 ```
 kubectl apply -f deployment.yaml
 ```
-
-
+supprimer le deploiement
+```
+    kubectl apply -f 
+```
 
 ## Description du projet
 Dans ce projet, j'ai mis sur pied une application de gestion de projet avec les fonctionnalités ci-dessous:
