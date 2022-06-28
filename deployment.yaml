@@ -27,26 +27,26 @@ spec:
     selector:
         app: scheduler-pod
     ports:
-    - port: 443
+    - port: 80
       protocol: TCP
       targetPort: 4000
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-    name: scheduler-ingress
-    annotations:
-        nginx.ingress.kubernetes.io/rewrite-target: /
-spec:
-    ingressClassName: nginx
-    rules:
-    - host: localhost
-      http:
-        paths:
-        - path: /scheduler
-          pathType: Prefix
-          backend:
-              service:
-                  name: scheduler-service
-                  port:
-                      number: 443
+#---
+#apiVersion: networking.k8s.io/v1
+#kind: Ingress
+#metadata:
+#    name: scheduler-ingress
+#    annotations:
+#        nginx.ingress.kubernetes.io/rewrite-target: /
+#spec:
+#    ingressClassName: nginx
+#    rules:
+#    - host: localhost
+#      http:
+#        paths:
+#        - path: /scheduler
+#          pathType: Prefix
+#          backend:
+#              service:
+#                  name: scheduler-service
+#                  port:
+#                      number: 443

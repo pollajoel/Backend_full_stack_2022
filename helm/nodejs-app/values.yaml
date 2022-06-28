@@ -1,0 +1,8 @@
+
+app:
+  name: "Myapp"
+deployment:
+  image: 'jenkinsexporter'
+  tag: '1.9'
+  port: '80'
+  targetport: '4000'
